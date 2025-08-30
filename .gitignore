@@ -1,0 +1,4 @@
+app/*
+deps.txt
+nodesource_setup.sh
+rootfs.tar
