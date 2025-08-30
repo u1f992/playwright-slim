@@ -22,7 +22,7 @@ cd ..
 mmdebstrap \
     --mode=fakeroot \
     --format=tar \
-    --variant=essential \
+    --variant=custom \
     --dpkgopt='path-exclude=/usr/share/man/*' \
     --dpkgopt='path-exclude=/usr/share/locale/*/LC_MESSAGES/*.mo' \
     --dpkgopt='path-exclude=/usr/share/doc/*' \
@@ -31,8 +31,8 @@ mmdebstrap \
     --setup-hook='cp /usr/share/keyrings/nodesource.gpg "$1/usr/share/keyrings/"' \
     --setup-hook='cp /etc/apt/sources.list.d/nodesource.list "$1/etc/apt/sources.list.d/"' \
     --setup-hook='cp /etc/apt/preferences.d/nodejs "$1/etc/apt/preferences.d/"' \
-    --include="nodejs $(cat deps.txt)" \
-    --customize-hook='mkdir -p "$1/root/.cache"' \
-    --customize-hook="copy-in /root/.cache/ms-playwright /root/.cache/" \
+    --include="dash coreutils diffutils libc-bin perl-base debconf sed init-system-helpers util-linux nodejs $(cat deps.txt)" \
+    --customize-hook='mkdir -p "$1/.cache"' \
+    --customize-hook="copy-in /root/.cache/ms-playwright /.cache/" \
     --customize-hook="copy-in /workdir/app /" \
     bookworm rootfs.tar
