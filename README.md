@@ -3,6 +3,13 @@ $ ./build.sh
 $ docker run --mount type=bind,source="$(pwd)",target=/app/mnt -it --rm playwright-slim mnt/test.js
 ```
 
+with [container2wasm](https://github.com/container2wasm/container2wasm):
+
+```
+$ c2w --build-arg VM_MEMORY_SIZE_MB=1024 playwright-slim:latest playwright-slim.wasm
+$ wasmtime --dir .::/app/mnt playwright-slim.wasm mnt/test.js
+```
+
 ## メモ
 
 `--setup-hook`の変更内容は`nodesource_setup.sh`を読んで決めた。
